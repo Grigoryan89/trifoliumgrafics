@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('printings', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('image')->nullable();
+            $table->unsignedBigInteger('printing_id');
+            $table->string('url');
+
+            $table->foreign('printing_id')->references('id')->on('printings')->onDelete('cascade');;
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('printings');
+        Schema::dropIfExists('images');
     }
 };

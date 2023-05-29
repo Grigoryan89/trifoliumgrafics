@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Printing;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidateRequest;
+use App\Models\Images;
 use App\Models\Printing;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,7 @@ class PrintingController extends Controller
      */
     public function index()
     {
-       return view('admin.printings.printing')->with('printings',Printing::orderBy('created_at','DESC')->paginate(5));
+        return view('admin.printings.printing')->with('printings', Printing::orderBy('id', 'DESC')->paginate(5));
 
     }
 
@@ -27,13 +30,21 @@ class PrintingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ValidateRequest $request)
     {
-       $newPrinting = new Printing();
-       $newPrinting->name = $request->name;
-       $newPrinting->description = $request->description;
-       $newPrinting->save();
-       return $newPrinting;
+
+        $formValidate = $request->validated();
+
+        $print = Printing::create($formValidate);
+        if (request()->hasFile('image')) {
+            foreach ($request->file('image') as $imagefile) {
+                $image = new Images;
+                $image->url = $imagefile->store('images/printing', 'public');
+                $image->printing_id = $print->id;
+                $image->save();
+            }
+        }
+        return back()->with('success', 'Printing Add');
     }
 
     /**
@@ -49,7 +60,7 @@ class PrintingController extends Controller
      */
     public function edit(Printing $printing)
     {
-        //
+        return view('admin.printings.edit')->with('printing', $printing);
     }
 
     /**

@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\Printing\PrintingController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,34 +19,18 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('admin/index', [AdminController::class,'index'])->middleware('admin');
 
-Route::middleware('admin:auth')->namespace('admin.printing')->prefix('admin/printings')->group(function (){
-   Route::get('/printing',[\App\Http\Controllers\PrintingController::class,'index'])->name('admin.printings.printing');
+Route::middleware('admin:auth')->prefix('admin/printings')->group(function (){
+   Route::resource('printing',PrintingController::class);
 });
 
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/' , [HomeController::class,'index']);
+Route::get('/about' , [HomeController::class,'about']);
+Route::get('/portfolio' , [HomeController::class,'portfolio']);
+Route::get('/service' , [HomeController::class,'service']);
+Route::get('/contact' , [HomeController::class,'contact']);
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/portfolio', function () {
-    return view('portfolio');
-});
-Route::get('/service', function () {
-    return view('service');
-});
-
-//Auth::routes(['login' => false]);
 
 Route::get('admin/trifoliums', [LoginController::class,'showLoginForm']);
 Route::post('admin/index', [LoginController::class,'login'])->name('login');
