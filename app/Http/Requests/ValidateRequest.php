@@ -24,7 +24,6 @@ class ValidateRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
-
         ];
     }
 }

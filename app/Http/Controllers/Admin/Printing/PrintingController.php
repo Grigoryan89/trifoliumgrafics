@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidateRequest;
 use App\Models\Images;
 use App\Models\Printing;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
+use function PHPUnit\Framework\isJson;
 
 class PrintingController extends Controller
 {
@@ -15,7 +19,7 @@ class PrintingController extends Controller
      */
     public function index()
     {
-        return view('admin.printings.printing')->with('printings', Printing::orderBy('id', 'DESC')->paginate(5));
+        return view('admin.printings.index')->with('printings', Printing::orderBy('id', 'DESC')->paginate(5));
 
     }
 
@@ -32,6 +36,7 @@ class PrintingController extends Controller
      */
     public function store(ValidateRequest $request)
     {
+
 
         $formValidate = $request->validated();
 
@@ -60,28 +65,49 @@ class PrintingController extends Controller
      */
     public function edit(Printing $printing)
     {
-        return view('admin.printings.edit')->with('printing', $printing);
+        return view('admin.printings.edit')->with('printing',$printing);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Printing $printing)
+    public function update(ValidateRequest $request, Printing $printing)
     {
-        $existing = $printing::findOrFail($request->id);
-        $existing->name = $request->name;
-        $existing->description = $request->description;
-        $existing->save();
-        return $existing;
+
+        Printing::where('id',$printing->id)->update($request->validated());
+        if (request()->hasFile('image')) {
+            foreach ($request->file('image') as $imagefile) {
+                $image = new Images;
+                $image->url = $imagefile->store('images/printing', 'public');
+                $image->printing_id = $printing->id;
+                $image->save();
+            }
+        }
+        return back()->with('success', 'Printing Add');
+//        dd($request->all());
+//        $existing = $printing::findOrFail($request->id);
+//        $existing->name = $request->name;
+//        $existing->description = $request->description;
+//        $existing->save();
+//        return $existing;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Printing $printing)
+    public function destroy(Printing $printing,Images $images,Request $request)
     {
-        $existing = $printing::findOrFail(\request('id'));
-        $existing->delete();
-        return 'delete is success ful';
+        dd($printing);
+        if ($request->delete_images){
+            $printing_id = $request->id;
+            $url = $images::findOrFail(intval($printing_id))->all();
+            $image_path = public_path("\storage\\") .$url[0]->url;
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
+            return  response()->json(['success'=>'Նկարը ջնջվեց']);
+        }
+        $printing->delete();
+        return redirect()->back()->with('success','Տվյալ հայտարարությունը ջնջվեց');
     }
 }

@@ -26,7 +26,8 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css'/>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">v
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Scripts -->
@@ -78,10 +79,10 @@ font-size: 16px;">
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('printing.index')}}">Tpagrutyun</a>
+                                <a href="{{route('printings.index')}}">Tpagrutyun</a>
                             </li>
                             <li>
-                                <a href="#">Frezerovka</a>
+                                <a href="{{route('millings.index')}}">Frezerovka</a>
                             </li>
                             <li>
                                 <a href="#">Lazer</a>
