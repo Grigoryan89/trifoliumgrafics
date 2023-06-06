@@ -10,10 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
+use App\Http\Traits\DeleteRowImagesTrait as DeleteImages;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\isJson;
 
 class PrintingController extends Controller
 {
+    use DeleteImages;
+
     /**
      * Display a listing of the resource.
      */
@@ -36,8 +40,6 @@ class PrintingController extends Controller
      */
     public function store(ValidateRequest $request)
     {
-
-
         $formValidate = $request->validated();
 
         $print = Printing::create($formValidate);
@@ -97,17 +99,29 @@ class PrintingController extends Controller
      */
     public function destroy(Printing $printing,Images $images,Request $request)
     {
-        dd($printing);
         if ($request->delete_images){
             $printing_id = $request->id;
-            $url = $images::findOrFail(intval($printing_id))->all();
-            $image_path = public_path("\storage\\") .$url[0]->url;
+            $url = $images::findOrFail(intval($printing_id));
+            $image_path = public_path('\storage\\') .$url->url;
             if (File::exists($image_path)) {
-                File::delete($image_path);
+               File::delete($image_path);
             }
+            $url->delete();
+
             return  response()->json(['success'=>'Նկարը ջնջվեց']);
         }
-        $printing->delete();
+
+
+        if ($request->delete_row){
+            $items = $images::where('printing_id',$request->id)->select('url')->get();
+            foreach ($items as $item){
+                $image_path = public_path("\storage\\") .$item->url;
+                if (File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+            }
+        }
+        $printing->findOrFail($request->id)->delete();
         return redirect()->back()->with('success','Տվյալ հայտարարությունը ջնջվեց');
     }
 }

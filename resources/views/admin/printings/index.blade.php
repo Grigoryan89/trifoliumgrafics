@@ -71,13 +71,18 @@
                             <a href="{{route('printings.edit',$printing->id)}}"  class="edit" title="Edit" data-toggle="tooltip"><i
                                     class="material-icons"></i></a>
                         </div>
+
+                            <button type="button" data-toggle="modal" class="deleteImage" style="cursor: pointer;display: inline;"
+                               data-target="#delete-modal"
+                               data-url="{{route('printings.destroy', $printing->id) }}"
+                               data-row="{{$printing->id}}"
+                               data-name="delete_row"><i
+                                    class="material-icons"></i></button>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb" >
-                            <form action="{{ route('printings.destroy',$printing->id) }}" method="Post">
-                                @csrf
-                                @method('DELETE')
-                                <a class="delete" type="submit" title="Delete" data-toggle="tooltip"><i
-                                        class="material-icons"></i></a>
-                            </form>
+
+
+
+
                         </div>
                         </div>
 
@@ -137,4 +142,52 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delimglabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delimglabel">Ջնջել տողը</h5>
+                </div>
+                <div class="modal-body">Իսկապե՞ս ուզում եք ջնջել տողը:</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="close-modal" data-dismiss="modal">Ոչ
+                    </button>
+                    <button type="button" class="delbtn btn btn-sm btn-secondary text-white btn-danger"
+                            data-delete-imgid="">Ջնջել
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.deleteImage').on('click', function () { // when the delete modal opens
+                let rowId = $(this).attr('data-row'); // get the image id
+                let rowName = $(this).attr('data-name'); // get the image id
+                let URL = $(this).data('url');
+
+                $(".delbtn").on("click", function (e) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    e.preventDefault();
+                    jQuery.ajax({
+                        type: "DELETE",
+                        url: URL,
+                        data: {delete_row: rowName, id: rowId},
+                        success: function (response) {
+                            location.reload();
+                        },
+                        error: function (response) {
+                            console.log('Image NOT Deleted !')
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
 @endsection

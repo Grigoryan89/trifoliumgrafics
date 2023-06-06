@@ -24,4 +24,9 @@ class Images extends Model
     {
         return $this->belongsTo(Printing::class, 'id');
     }
+
+    public function printingId($query)
+    {
+        return $query->where('printing_id', 2);
+    }
 }
