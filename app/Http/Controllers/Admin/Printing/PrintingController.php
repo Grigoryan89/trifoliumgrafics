@@ -76,7 +76,7 @@ class PrintingController extends Controller
     public function update(ValidateRequest $request, Printing $printing)
     {
 
-        Printing::where('id',$printing->id)->update($request->validated());
+        $printing::where('id',$printing->id)->update($request->validated());
         if (request()->hasFile('image')) {
             foreach ($request->file('image') as $imagefile) {
                 $image = new Images;
@@ -86,12 +86,6 @@ class PrintingController extends Controller
             }
         }
         return back()->with('success', 'Printing Add');
-//        dd($request->all());
-//        $existing = $printing::findOrFail($request->id);
-//        $existing->name = $request->name;
-//        $existing->description = $request->description;
-//        $existing->save();
-//        return $existing;
     }
 
     /**

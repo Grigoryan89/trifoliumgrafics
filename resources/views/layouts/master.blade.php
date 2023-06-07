@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Glxavor ej</a>
+                <a class="navbar-brand" href="/">Գլխաոր էջ</a>
             </div>
             <div style="color: white;
 padding: 15px 50px 5px 50px;
@@ -54,7 +54,7 @@ font-size: 16px;">
                 <a class="btn btn-danger square-btn-adjust" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    Դուրս գալ
                 </a>
                 {{--                <a href="#" class="btn btn-danger square-btn-adjust">Logout</a>--}}
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -72,17 +72,17 @@ font-size: 16px;">
 
 
                     <li>
-                        <a class="active-menu" href="/admin/index"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="active-menu" href="/admin/index"><i class="fa fa-dashboard fa-3x"></i>Գլխաոր</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-print fa-3x"></i> Tpagrutyun<span
+                        <a href="#"><i class="fa fa-print fa-3x"></i>Տպագրություն<span
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('printings.index')}}">Tpagrutyun</a>
+                                <a href="{{route('printings.index')}}">Տպագրություն</a>
                             </li>
                             <li>
-                                <a href="{{route('millings.index')}}">Frezerovka</a>
+                                <a href="{{route('millings.index')}}">Ֆռեզեռովկա </a>
                             </li>
                             <li>
                                 <a href="#">Lazer</a>
@@ -196,6 +196,13 @@ font-size: 16px;">
     </div>
 
 </div>
+<script>
+    $('.nav ul li').each(function() {
+        if ($(this).hasClass('active-menu')) {
+            $(this).parents("ul").css('display', 'block');
+        }
+    })
+</script>
 <script src="{{asset('admin/form/form.js')}}"></script>
 <script src="{{asset('admin/js/jquery-1.10.2.js')}}"></script>
 <!-- BOOTSTRAP SCRIPTS -->

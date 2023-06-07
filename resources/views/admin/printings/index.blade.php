@@ -21,10 +21,10 @@
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="col-sm-8"><h1>Tpagrutyun <b>Detalner@</b></h1></div>
+                <div class="col-sm-8"><h1>Տպագրություն <b>Մանրամասներ</b></h1></div>
                 <div class="col-sm-4">
                     <button type="button" class="btn btn-info add-new" data-toggle="modal"
-                            data-target="#addModal"><i class="fa fa-plus"></i> Avelacnel Print
+                            data-target="#addModal"><i class="fa fa-plus"></i> Ավելացնել Պրինո
                     </button>
                 </div>
             </div>
@@ -33,10 +33,10 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Anun</th>
-                <th>Nkaragrutyun</th>
-                <th>Nkar</th>
-                <th>Popoxel Jnjel</th>
+                <th>Անուն</th>
+                <th>Նկարագրություն</th>
+                <th>Նկար</th>
+                <th>Փոփոխել։ Ջնջել</th>
             </tr>
             </thead>
             <tbody>
@@ -67,23 +67,20 @@
                         <div class="row">
 
 
-                        <div class="col-lg-3 col-md-4 col-xs-6 thumb" >
-                            <a href="{{route('printings.edit',$printing->id)}}"  class="edit" title="Edit" data-toggle="tooltip"><i
-                                    class="material-icons"></i></a>
-                        </div>
-
-                            <button type="button" data-toggle="modal" class="deleteImage" style="cursor: pointer;display: inline;"
-                               data-target="#delete-modal"
-                               data-url="{{route('printings.destroy', $printing->id) }}"
-                               data-row="{{$printing->id}}"
-                               data-name="delete_row"><i
+                            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                                <a href="{{route('printings.edit',$printing->id)}}" class="edit" title="Edit"
+                                   data-toggle="tooltip"><i
+                                        class="material-icons"></i></a>
+                            </div>
+                            <button type="button" data-toggle="modal" class="deleteImage"
+                                    style="cursor: pointer;display: inline;color: red"
+                                    data-target="#delete-modal"
+                                    data-url="{{route('printings.destroy', $printing->id) }}"
+                                    data-row="{{$printing->id}}"
+                                    data-name="delete_row"><i
                                     class="material-icons"></i></button>
-                        <div class="col-lg-3 col-md-4 col-xs-6 thumb" >
-
-
-
-
-                        </div>
+                            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                            </div>
                         </div>
 
                     </td>
@@ -96,8 +93,6 @@
     </div>
 
 
-
-
     <!-- Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal"
          aria-hidden="true">
@@ -106,11 +101,11 @@
                 <form action="{{route('printings.store')}}" method="post" enctype="multipart/form-data">
                     @method('POST') @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add new Print</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Ավելացնել Նոր</h5>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name" class="col-form-label">Name:</label><br>
+                            <label for="name" class="col-form-label">Անուն:</label><br>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                    name="name"><br>
                         </div>
@@ -120,7 +115,7 @@
                                     </span>
                         @enderror
                         <div class="form-group">
-                            <label for="description" class="col-form-label">Description</label><br>
+                            <label for="description" class="col-form-label">Նկարագրություն</label><br>
                             <input type="text" class="form-control @error('description') is-invalid @enderror"
                                    id="description" name="description"><br>
                         </div>
@@ -130,13 +125,13 @@
                                     </span>
                         @enderror
                         <div class="form-group">
-                            <label for="image" class="col-form-label">Images</label><br>
+                            <label for="image" class="col-form-label">Նկար</label><br>
                             <input type="file" class="form-control" id="image" name="image[]" multiple><br><br>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+                        <button type="submit" class="btn btn-primary">Պահպանել</button>
                     </div>
                 </form>
             </div>
@@ -175,9 +170,9 @@
                     });
                     e.preventDefault();
                     jQuery.ajax({
-                        type: "DELETE",
+                        type: 'POST',
                         url: URL,
-                        data: {delete_row: rowName, id: rowId},
+                        data: {delete_row: rowName, id: rowId ,'_method': 'delete'},
                         success: function (response) {
                             location.reload();
                         },
