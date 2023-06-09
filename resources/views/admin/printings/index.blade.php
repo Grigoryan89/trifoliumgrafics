@@ -104,21 +104,75 @@
                         <h5 class="modal-title" id="exampleModalLabel">Ավելացնել Նոր</h5>
                     </div>
                     <div class="modal-body">
+
+                        <br>
                         <div class="form-group">
-                            <label for="name" class="col-form-label">Անուն:</label><br>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                   name="name"><br>
+                            <label class="required" for="en_name">Անուն (EN)</label>
+                            <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text"
+                                   name="en_name" value="{{ old('en_name', '') }}" required>
+                            @if($errors->has('en_name'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('en_name') }}
+                                </div>
+                            @endif
                         </div>
-                        @error('name ')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
                         <div class="form-group">
-                            <label for="description" class="col-form-label">Նկարագրություն</label><br>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror"
-                                   id="description" name="description"><br>
+                            <label for="en_description">Նկարագրություն (EN)</label>
+                            <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}"
+                                      name="en_description">{{ old('en_description') }}</textarea>
+                            @if($errors->has('en_description'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('en_description') }}
+                                </div>
+                            @endif
+
                         </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="required" for="am_name">Անուն (AM)</label>
+                            <input class="form-control {{ $errors->has('am_name') ? 'is-invalid' : '' }}" type="text"
+                                   name="am_name" value="{{ old('am_name', '') }}" required>
+                            @if($errors->has('am_name'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('am_name') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="am_description">Նկարագրություն (AM)</label>
+                            <textarea class="form-control {{ $errors->has('am_description') ? 'is-invalid' : '' }}"
+                                      name="am_description">{{ old('am_description') }}</textarea>
+                            @if($errors->has('am_description'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('am_description') }}
+                                </div>
+                            @endif
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="required" for="ru_name">Անուն (RU)</label>
+                            <input class="form-control {{ $errors->has('ru_name') ? 'is-invalid' : '' }}" type="text"
+                                   name="ru_name" value="{{ old('ru_name', '') }}" required>
+                            @if($errors->has('ru_name'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('ru_name') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="ru_description">Նկարագրություն (RU)</label>
+                            <textarea class="form-control {{ $errors->has('ru_description') ? 'is-invalid' : '' }}"
+                                      name="ru_description">{{ old('ru_description') }}</textarea>
+                            @if($errors->has('ru_description'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('ru_description') }}
+                                </div>
+                            @endif
+
+                        </div>
+
+
                         @error('description ')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -172,7 +226,7 @@
                     jQuery.ajax({
                         type: 'POST',
                         url: URL,
-                        data: {delete_row: rowName, id: rowId ,'_method': 'delete'},
+                        data: {delete_row: rowName, id: rowId, '_method': 'delete'},
                         success: function (response) {
                             location.reload();
                         },

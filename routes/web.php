@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\Printing\PrintingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('lang/change', [HomeController::class, 'change'])->name('changeLang');
+
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
+Route::get('/portfolio', [HomeController::class, 'portfolio']);
+Route::get('/service', [HomeController::class, 'service']);
+Route::get('/contact', [HomeController::class, 'contact']);
+
+
+
 Route::get('admin/index', [AdminController::class, 'index'])->middleware('admin');
 
 Route::middleware('admin:auth')->prefix('admin/printings')->group(function () {
@@ -35,12 +48,6 @@ Route::middleware('admin:auth')->prefix('admin/printings')->group(function () {
 Route::prefix('admin/millings')->group(function (){
     Route::resource('millings',MillingController::class);
 });
-
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [HomeController::class, 'about']);
-Route::get('/portfolio', [HomeController::class, 'portfolio']);
-Route::get('/service', [HomeController::class, 'service']);
-Route::get('/contact', [HomeController::class, 'contact']);
 
 
 Route::get('admin/trifoliums', [LoginController::class, 'showLoginForm']);

@@ -22,8 +22,12 @@ class ValidateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'description' => 'required',
+            'en_name' => 'required',
+            'en_description' => 'required',
+            'am_name' => 'required',
+            'am_description' => 'required',
+            'ru_name' => 'required',
+            'ru_description' => 'required',
         ];
     }
 }

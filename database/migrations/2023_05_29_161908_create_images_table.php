@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('milling_id')->nullable();
             $table->string('url');
 
-            $table->foreign('printing_id')->references('id')->on('printings')->onDelete('cascade');;
-            $table->foreign('milling_id')->references('id')->on('millings')->onDelete('cascade');;
+            $table->foreign('printing_id')->references('id')->on('printings')->onDelete('cascade');
+            $table->foreign('milling_id')->references('id')->on('millings')->onDelete('cascade');
             $table->timestamps();
         });
     }

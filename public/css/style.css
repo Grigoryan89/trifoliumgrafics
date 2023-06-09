@@ -517,11 +517,11 @@ a:focus {
 }
 
 .client_section .carousel-control-prev {
-  left: -75px;
+  left: -50px;
 }
 
 .client_section .carousel-control-next {
-  right: -75px;
+  right: -50px;
 }
 
 .contact_section {
