@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-
-
-@include('navbar')
+    @include('navbar')
 
 
 <!-- about section -->

@@ -2,6 +2,7 @@
 @section('content')
 
     @include('navbar')
+
 <!-- portfolio section -->
 <section class="portfolio_section layout_padding">
     <div class="container">

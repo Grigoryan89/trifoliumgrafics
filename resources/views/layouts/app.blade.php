@@ -8,6 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    {{--    title images   --}}
+    <link rel="icon" type="images/x-icon" href="{{asset('images/title.jpg')}}"/>
+
 
     <!-- slider stylesheet -->
     <link rel="stylesheet" type="text/css"
@@ -41,24 +44,50 @@
                 <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
                     <a class="navbar-brand" href="/">
                         <img src="{{asset('images/logo.png')}}" alt=""/>
+                    </a>
                         <span>
-              Trifolium Grafics
-            </span>
+                          Trifolium Grafics
+                        </span>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" style="padding: "
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                    <div class="call_btn">
-                        <a href="">
-                            Call: +374(93-83-33-13)
-                        </a>
-                    </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto mr-2">
+                                <li class="nav-item active">
+                                    <a class="nav-link pl-0" href="/">  {{ __('app.home')}} <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about"> {{ __('app.about')}} </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/portfolio">{{ __('app.portfolio')}} </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/service"> {{ __('app.services')}}</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact">{{ __('app.contact')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="call_btn">
+                            <a href="">
+                                Call: +374(93-83-33-13)
+                            </a>
+                        </div>
 
 
-                    <div style="padding-left: 15px;margin-left: 16px;">
-                        <select class="form-control changeLang">
-                            <option value="am" {{ session()->get('locale') == 'am' ? 'selected' : '' }}>AM</option>
-                            <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
-                            <option value="ru" {{ session()->get('locale') == 'ru' ? 'selected' : '' }}>RU</option>
-                        </select>
-                    </div>
+                        <div style="margin-left: 16px;">
+                            <select class="form-control changeLang">
+                                <option value="am" {{ session()->get('locale') == 'am' ? 'selected' : '' }}>AM</option>
+                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
+                                <option value="ru" {{ session()->get('locale') == 'ru' ? 'selected' : '' }}>RU</option>
+                            </select>
+                        </div>
 
                 </nav>
             </div>
@@ -167,7 +196,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="info_links pl-lg-5">
                         <h4>
-                                {{__('app.menu')}}
+                            {{__('app.menu')}}
                         </h4>
                         <ul>
                             <li class="active">
@@ -272,8 +301,8 @@
 <script src="{{asset('js/custom.js')}}"></script>
 <script>
     let url = "{{ route('changeLang') }}";
-    $(".changeLang").change(function(){
-        window.location.href = url + "?lang="+ $(this).val();
+    $(".changeLang").change(function () {
+        window.location.href = url + "?lang=" + $(this).val();
     });
 </script>
 </body>
