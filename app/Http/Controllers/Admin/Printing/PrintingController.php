@@ -42,12 +42,12 @@ class PrintingController extends Controller
     {
         $formValidate = $request->validated();
 
-        $print = Printing::create($formValidate);
+        $result = Printing::create($formValidate);
         if (request()->hasFile('image')) {
             foreach ($request->file('image') as $imagefile) {
                 $image = new Images;
                 $image->url = $imagefile->store('images/printing', 'public');
-                $image->printing_id = $print->id;
+                $image->printing_id = $result->id;
                 $image->save();
             }
         }
@@ -61,6 +61,7 @@ class PrintingController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.

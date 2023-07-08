@@ -22,7 +22,7 @@ class Images extends Model
 
     public function milling()
     {
-        return $this->belongsTo(Printing::class, 'id');
+        return $this->belongsTo(Milling::class, 'id');
     }
 
     public function printingId($query)

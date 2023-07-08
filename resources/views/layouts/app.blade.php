@@ -7,11 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> Trifolium Grafics </title>
     {{--    title images   --}}
-    <link rel="icon" type="images/x-icon" href="{{asset('images/title.jpg')}}"/>
+    <link rel="icon" type="images/x-icon" href="{{asset('images/logo.jpg')}}"/>
 
-
+    <link href="{{asset('css/portfolio.css')}}" rel="stylesheet"/>
     <!-- slider stylesheet -->
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css"/>
@@ -24,6 +24,7 @@
           rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
+
     <link href="{{asset('css/style.css')}}" rel="stylesheet"/>
     <!-- responsive style -->
     <link href="{{asset('css/responsive.css')}}" rel="stylesheet"/>
@@ -31,8 +32,13 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
-    {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+
 </head>
 <body>
 
@@ -43,7 +49,7 @@
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
                     <a class="navbar-brand" href="/">
-                        <img src="{{asset('images/logo.png')}}" alt=""/>
+                        <img src="{{asset('images/logo.jpg')}}" alt=""/>
                     </a>
                         <span>
                           Trifolium Grafics
@@ -81,7 +87,7 @@
                         </div>
 
 
-                        <div style="margin-left: 16px;">
+                        <div style="margin-left: 16px;" class="lang">
                             <select class="form-control changeLang">
                                 <option value="am" {{ session()->get('locale') == 'am' ? 'selected' : '' }}>AM</option>
                                 <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
@@ -241,7 +247,7 @@
                         <div>
                             <img src="{{asset('images/telephone.png')}}" alt=""/>
                             <p>
-                                ( +01 1234567890 )
+                                 +374(93-83-33-13)
                             </p>
                         </div>
                         <div>
@@ -295,11 +301,15 @@
     <!-- footer section -->
 
 </div>
-<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{asset('js/circles.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
 <script>
+    $('.navbar-toggler').on('click',function (){
+        $('.lang').toggle()
+    })
+
+
     let url = "{{ route('changeLang') }}";
     $(".changeLang").change(function () {
         window.location.href = url + "?lang=" + $(this).val();

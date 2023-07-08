@@ -32,9 +32,12 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Անուն</th>
-                <th>Նկարագրություն</th>
+                <th>Անուն (EN)</th>
+                <th>Նկարագ.(EN)</th>
+                <th>Անուն (AM)</th>
+                <th>Նկարագ.(AM)</th>
+                <th>Անուն (RU)</th>
+                <th>Նկարագ.(RU)</th>
                 <th>Նկար</th>
                 <th>Փոփոխել։ Ջնջել</th>
             </tr>
@@ -43,9 +46,12 @@
             @foreach($printings as $printing)
 
                 <tr>
-                    <td>{{$printing->id}}</td>
-                    <td>{{$printing->name}}</td>
-                    <td>{{$printing->description}}</td>
+                    <td>{{$printing->en_name}}</td>
+                    <td>{{$printing->en_description}}</td>
+                    <td>{{$printing->am_name}}</td>
+                    <td>{{$printing->am_description}}</td>
+                    <td>{{$printing->ru_name}}</td>
+                    <td>{{$printing->ru_description}}</td>
                     <td>
                         @if(!$printing->images->isEmpty())
                             @foreach($printing->images as $item)
@@ -98,86 +104,83 @@
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <ul class="nav nav-tabs" style="margin-bottom: 25px">
+                    <li class="active"><a data-toggle="tab" href="#en">EN</a></li>
+                    <li><a data-toggle="tab" href="#am">Am</a></li>
+                    <li><a data-toggle="tab" href="#ru">RU</a></li>
+                </ul>
                 <form action="{{route('printings.store')}}" method="post" enctype="multipart/form-data">
                     @method('POST') @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ավելացնել Նոր</h5>
                     </div>
                     <div class="modal-body">
+                        <div class="tab-content">
 
-                        <br>
-                        <div class="form-group">
-                            <label class="required" for="en_name">Անուն (EN)</label>
-                            <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text"
-                                   name="en_name" value="{{ old('en_name', '') }}" required>
-                            @if($errors->has('en_name'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('en_name') }}
+                            <div id="en" class="tab-pane fade in active">
+                                <div class="form-group">
+                                    <label class="required" for="en_name">Անուն: (EN)</label>
+                                    <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text" name="en_name" id="en_name" value="{{ old('en_name') }}" required>
+                                    @if($errors->has('en_name'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('en_name') }}
+                                        </div>
+                                    @endif
+
                                 </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label for="en_description">Նկարագրություն (EN)</label>
-                            <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}"
-                                      name="en_description">{{ old('en_description') }}</textarea>
-                            @if($errors->has('en_description'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('en_description') }}
+                                <div class="form-group">
+                                    <label for="en_description">Նկարագրություն (EN)</label>
+                                    <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}" name="en_description" id="en_description">{{ old('en_description') }}</textarea>
+                                    @if($errors->has('en_description'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('en_description') }}
+                                        </div>
+                                    @endif
                                 </div>
-                            @endif
-
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label class="required" for="am_name">Անուն (AM)</label>
-                            <input class="form-control {{ $errors->has('am_name') ? 'is-invalid' : '' }}" type="text"
-                                   name="am_name" value="{{ old('am_name', '') }}" required>
-                            @if($errors->has('am_name'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('am_name') }}
+                            </div>
+                            <div id="am" class="tab-pane fade">
+                                <div class="form-group">
+                                    <label class="required" for="en_name">Անուն: (AM)</label>
+                                    <input class="form-control {{ $errors->has('am_name') ? 'is-invalid' : '' }}" type="text" name="am_name" id="am_name" value="{{ old('am_name') }}" required>
+                                    @if($errors->has('am_name'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('am_name') }}
+                                        </div>
+                                    @endif
                                 </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label for="am_description">Նկարագրություն (AM)</label>
-                            <textarea class="form-control {{ $errors->has('am_description') ? 'is-invalid' : '' }}"
-                                      name="am_description">{{ old('am_description') }}</textarea>
-                            @if($errors->has('am_description'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('am_description') }}
+                                <div class="form-group">
+                                    <label for="en_description">Նկարագրություն (AM)</label>
+                                    <textarea class="form-control {{ $errors->has('am_description') ? 'is-invalid' : '' }}" name="am_description" id="am_description">{{ old('am_description') }}</textarea>
+                                    @if($errors->has('am_description'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('am_description') }}
+                                        </div>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
+                            <div id="ru" class="tab-pane fade">
+                                <div class="form-group">
+                                    <label class="required" for="en_name">Անուն: (RU)</label>
+                                    <input class="form-control {{ $errors->has('ru_name') ? 'is-invalid' : '' }}" type="text" name="ru_name" id="ru_name" value="{{ old('ru_name') }}" required>
+                                    @if($errors->has('ru_name'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('ru_name') }}
+                                        </div>
+                                    @endif
 
-                        </div>
-
-                        <div class="form-group">
-                            <label class="required" for="ru_name">Անուն (RU)</label>
-                            <input class="form-control {{ $errors->has('ru_name') ? 'is-invalid' : '' }}" type="text"
-                                   name="ru_name" value="{{ old('ru_name', '') }}" required>
-                            @if($errors->has('ru_name'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('ru_name') }}
                                 </div>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label for="ru_description">Նկարագրություն (RU)</label>
-                            <textarea class="form-control {{ $errors->has('ru_description') ? 'is-invalid' : '' }}"
-                                      name="ru_description">{{ old('ru_description') }}</textarea>
-                            @if($errors->has('ru_description'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('ru_description') }}
+                                <div class="form-group">
+                                    <label for="ru_description">Նկարագրություն (RU)</label>
+                                    <textarea class="form-control {{ $errors->has('ru_description') ? 'is-invalid' : '' }}" name="ru_description" id="ru_description">{{ old('ru_description') }}</textarea>
+                                    @if($errors->has('ru_description'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('ru_description') }}
+                                        </div>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
 
                         </div>
-
-
-                        @error('description ')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
                         <div class="form-group">
                             <label for="image" class="col-form-label">Նկար</label><br>
                             <input type="file" class="form-control" id="image" name="image[]" multiple><br><br>

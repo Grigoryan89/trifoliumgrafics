@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    @include('navbar')
+    <x-navbar/>
 
 
 <!-- contact section -->

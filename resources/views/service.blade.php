@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    @include('navbar')
+    <x-navbar/>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- Mobile Metas -->

@@ -12,7 +12,7 @@ class Printing extends Model
 
     protected $table = 'printings';
 
-    protected $fillable =  ['name','description'];
+    protected $fillable = ['en_name','en_description','am_name','am_description','ru_name','ru_description'];
 
 
     public function images()
