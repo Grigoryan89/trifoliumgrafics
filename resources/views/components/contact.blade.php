@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
-                <h2 class="custom_heading">Contact Us</h2>
+                <h2 class="custom_heading">{{__('app.contact')}}</h2>
                 <form action="{{route('contact.store')}}" method="post">
                     @method('POST') @csrf
                     <div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex  mt-4 ">
                         <button type="submit">
-                            SEND
+                            {{__('app.about_contact.send')}}
                         </button>
                     </div>
                 </form>

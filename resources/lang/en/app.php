@@ -5,7 +5,9 @@ return [
     'portfolio' => 'Portfolio',
     'services' => 'Services',
     'contact' => 'Contact',
+    'partners' => 'Partners',
     'menu' => 'Menu',
+    'phone' => 'Phone',
     'location' => 'Location',
     'for_location' => 'Tigran Metz avenue, 2',
     'social_link' => 'Social Link',
@@ -22,6 +24,7 @@ return [
         'email' => 'Email',
         'phone' => 'Phone number',
         'message' => 'Message',
+        'send' => 'Send',
         'success_messages' => 'Your message has been sent'
     ],
 ];

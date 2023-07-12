@@ -43,7 +43,7 @@
 <body>
 
 <div id="app" @if(Request::path() === 'admin/trifoliums') hidden @endif>
-    <div class="hero_area" style="@if(Request::path() != '/' )   height: auto; @endif">
+    <div class="hero_area" style="height: auto">
         <!-- header section strats -->
         <header class="header_section">
             <div class="container-fluid">
@@ -54,7 +54,7 @@
                         <span>
                           Trifolium Grafics
                         </span>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" style="padding: "
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -81,9 +81,7 @@
                             </ul>
                         </div>
                         <div class="call_btn">
-                            <a href="">
-                                Call: +374(93-83-33-13)
-                            </a>
+                            {{ __('app.phone')}}: +374(93-83-33-13)
                         </div>
 
 
@@ -100,95 +98,7 @@
         </header>
         <!-- end header section -->
 
-        <section class="slider_section" @if(Request::path() != '/') hidden @endif>
-            <div class="container-fluid">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-2 offset-md-2">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Make Design
-                                        </h1>
-                                        <p>
-                                            There are many variations of passages of Lorem Ipsum
-                                            available, but the majority
-                                        </p>
-                                        <div>
-                                            <a href="">
-                                                Read More
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7 col-lg-8">
-                                    <div class="img-box">
-                                        <img src="{{asset('images/hero.png')}}" alt=""/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-2 offset-md-2">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Make Design
-                                        </h1>
-                                        <p>
-                                            There are many variations of passages of Lorem Ipsum
-                                            available, but the majority
-                                        </p>
-                                        <div>
-                                            <a href="">
-                                                Read More
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7 col-lg-8">
-                                    <div class="img-box">
-                                        <img src="{{asset('images/hero.png')}}" alt=""/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-2 offset-md-2">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Make Design
-                                        </h1>
-                                        <p>
-                                            There are many variations of passages of Lorem Ipsum
-                                            available, but the majority
-                                        </p>
-                                        <div>
-                                            <a href="">
-                                                Read More
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7 col-lg-8">
-                                    <div class="img-box">
-                                        <img src="{{asset('images/hero.png')}}" alt=""/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+
     </div>
 
 @yield('content')
@@ -228,6 +138,11 @@
                             <li>
                                 <a href="/contact">
                                     {{ __('app.contact')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="/partners">
+                                    {{ __('app.partners')}}
                                 </a>
                             </li>
                         </ul>
