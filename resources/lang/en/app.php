@@ -16,5 +16,12 @@ return [
         'all' => 'All',
         'printing' => 'Printing',
         'milling' => 'Milling',
-    ]
+    ],
+    'about_contact' => [
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone number',
+        'message' => 'Message',
+        'success_messages' => 'Your message has been sent'
+    ],
 ];

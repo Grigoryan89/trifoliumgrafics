@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Milling\MillingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\Printing\PrintingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Portfolio\PortfolioPrintController;
 use Illuminate\Support\Facades\Route;
@@ -38,12 +39,18 @@ Route::name('print.')->prefix('portfolio')->group(function() {
 
 });
 
-Route::get('admin/index', [AdminController::class, 'index'])->middleware('admin');
+Route::post('contact-us',  [ContactController::class, 'store'])->name('contact.store');
+
+Route::middleware('admin')->prefix('admin')->group(function (){
+    Route::get('index', [AdminController::class, 'index']);
+    Route::get('contact', [AdminController::class, 'contact'])->name('admin.contact');
+});
+
 Route::middleware('admin:auth')->prefix('admin/printings')->group(function () {
     Route::resource('printings', PrintingController::class);
 });
 
-Route::prefix('admin/millings')->group(function () {
+Route::middleware('admin:auth')->prefix('admin/millings')->group(function () {
     Route::resource('millings', MillingController::class);
 });
 

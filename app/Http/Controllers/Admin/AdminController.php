@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,9 +12,16 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Contact $contact)
     {
-        return view('admin.index');
+        $contact = $contact::latest()->get();
+        return view('admin.index',compact('contact'));
+    }
+
+    public function contact(Contact $contact)
+    {
+        $contact = $contact::latest()->get();
+        return view('admin.contact',compact('contact'));
     }
 
     /**

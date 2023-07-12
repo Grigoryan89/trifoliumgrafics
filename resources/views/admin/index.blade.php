@@ -14,10 +14,14 @@
                 <span class="icon-box bg-color-red set-icon">
                     <i class="fa fa-envelope-o"></i>
                 </span>
+
                         <div class="text-box">
-                            <p class="main-text">120 New</p>
-                            <p class="text-muted">Messages</p>
+                            <a href="{{route('admin.contact')}}" style="text-decoration: none">
+                            <p class="main-text">{{count($contact)}} </p>
+                            <p class="text-muted">Նամակ</p>
+                            </a>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-6">
