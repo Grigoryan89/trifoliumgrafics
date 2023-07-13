@@ -30,13 +30,12 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::get('/portfolio', [HomeController::class, 'portfolio']);
 Route::get('/service', [HomeController::class, 'service']);
 Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/partners', [HomeController::class, 'partners']);
 
 Route::name('print.')->prefix('portfolio')->group(function() {
-
     Route::get('print-index',  [PortfolioPrintController::class, 'index'])->name('index');
     Route::get('print-all',  [PortfolioPrintController::class, 'printings'])->name('all');
     Route::get('print-show/{id}',  [PortfolioPrintController::class, 'printingShow'])->name('show');
-
 });
 
 Route::post('contact-us',  [ContactController::class, 'store'])->name('contact.store');

@@ -8,15 +8,6 @@
             </p>
         </div>
     @endif
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <div class="table-wrapper">
         <div class="table-title">
@@ -114,15 +105,16 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ավելացնել Նոր</h5>
                     </div>
+                    <h1 style="background: red">Բոլոր դաշտերը պարտադիրեն</h1>
                     <div class="modal-body">
                         <div class="tab-content">
 
                             <div id="en" class="tab-pane fade in active">
                                 <div class="form-group">
                                     <label class="required" for="en_name">Անուն: (EN)</label>
-                                    <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text" name="en_name" id="en_name" value="{{ old('en_name') }}" required>
+                                    <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text" name="en_name" id="en_name" value="{{ old('en_name') }}" required autofocus>
                                     @if($errors->has('en_name'))
-                                        <div class="invalid-feedback">
+                                        <div class="invalid-feedback" role="alert">
                                             {{ $errors->first('en_name') }}
                                         </div>
                                     @endif
@@ -130,7 +122,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="en_description">Նկարագրություն (EN)</label>
-                                    <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}" name="en_description" id="en_description">{{ old('en_description') }}</textarea>
+                                    <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}" name="en_description" id="en_description" required>{{ old('en_description') }}</textarea>
                                     @if($errors->has('en_description'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('en_description') }}
