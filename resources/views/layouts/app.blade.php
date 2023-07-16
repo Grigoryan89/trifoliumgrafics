@@ -100,7 +100,10 @@
 
 
     </div>
-
+    @if(Session::has('success'))<div class="alert alert-success d-flex justify-content-center">
+        <strong>{{session('success')}}</strong>
+    </div>
+@endif
 @yield('content')
 
 

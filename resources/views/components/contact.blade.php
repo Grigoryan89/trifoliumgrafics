@@ -13,40 +13,20 @@
                     @method('POST') @csrf
                     <div>
                         <input type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
-                               value="{{ old('name') }}" placeholder="{{__('app.about_contact.name')}}" required/>
-                        @if($errors->has('name'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('name') }}
-                            </div>
-                        @endif
+                               value="{{ old('name') }}" placeholder="{{__('app.about_contact.name')}}" required  oninvalid="this.setCustomValidity( '{{__("app.required.contact")}} ')" onchange="try{setCustomValidity('')}catch(e){};" >
                     </div>
                     <div>
                         <input type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" name="email"
-                               value="{{ old('email') }}" placeholder="{{__('app.about_contact.email')}}" required/>
-                        @if($errors->has('email'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('email') }}
-                            </div>
-                        @endif
+                               value="{{ old('email') }}" placeholder="{{__('app.about_contact.email')}}"  required oninvalid="this.setCustomValidity( '{{__("app.required.contact")}} ')" onchange="try{setCustomValidity('')}catch(e){};" />
                     </div>
                     <div>
                         <input type="text" class="{{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone"
                                value="{{ old('phone') }}" placeholder="{{__('app.about_contact.phone')}} +37494000000"
-                               required/>
-                        @if($errors->has('phone'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('phone') }}
-                            </div>
-                        @endif
+                               oninvalid="this.setCustomValidity( '{{__("app.required.contact")}} ')"  onchange="try{setCustomValidity('')}catch(e){};"  required/>
                     </div>
                     <div>
                         <input type="text" name="message" value="{{ old('message') }}" class="message-box"
-                               placeholder="{{__('app.about_contact.message')}}" required/>
-                        @if($errors->has('message'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('message') }}
-                            </div>
-                        @endif
+                               placeholder="{{__('app.about_contact.message')}}"   oninvalid="this.setCustomValidity( '{{__("app.required.contact")}} ')" onchange="try{setCustomValidity('')}catch(e){};" required/>
                     </div>
                     <div class="d-flex  mt-4 ">
                         <button type="submit">

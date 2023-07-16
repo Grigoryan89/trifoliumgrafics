@@ -31,7 +31,7 @@ class ContactController extends Controller
     {
         $formValidate = $request->validated();
         Contact::create($formValidate);
-        return back()->with('success', 'sdczsdvzsdv');
+        return back()->with('success', __('app.success_message_contact'));
     }
 
     /**

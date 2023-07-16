@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Lang;
 
 return [
+    'success_message_contact' => 'Ձեր հաղորդագրությունն ուղարկվեց, շնորհակալություն',
+    'required' => [
+        'contact' => 'Բոլոր դաշտերը պարտադիր են'
+    ],
     'home' => 'Գլխավոր',
     'about' => 'Մեր Մասին',
     'portfolio' => 'Պորտֆոլիո',
