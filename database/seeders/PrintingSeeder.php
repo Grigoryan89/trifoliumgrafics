@@ -16,7 +16,7 @@ class PrintingSeeder extends Seeder
      */
     public function run(): void
     {
-        Printing::factory()->count(10)->create();
-        Milling::factory()->count(10)->create();
+        Printing::factory()->count(2)->create();
+        Milling::factory()->count(2)->create();
     }
 }

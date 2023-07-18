@@ -16,66 +16,107 @@
             margin-bottom: 15px;
         }
     </style>
-
-    <!-- Modal -->
-    <div>
-        <div class="dialog">
-            <div class="-content">
-                <form action="{{route('millings.update',$milling->id)}}" method="post"
-                      enctype="multipart/form-data">
-                    @method('PATCH') @csrf
-                    <div class="-header">
-                        <h1 class="-title" id="exampleModalLabel">Փոփոխել պրինտը</h1>
-                    </div>
-                    <div class="-body">
-                        <div class="form-group">
-                            <label for="name" class="col-form-label">Անուն:</label><br>
-                            <input type="text" value="{{ $milling->name }}"
-                                   class="form-control @error('name') is-invalid @enderror" id="name"
-                                   name="name"><br>
-                        </div>
-                        @error('name ')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-                        <div class="form-group">
-                            <label for="description" class="col-form-label">Նկարագրություն</label><br>
-                            <input type="text" value="{{ $milling->description }}"
-                                   class="form-control @error('description') is-invalid @enderror"
-                                   id="description" name="description"><br>
-                        </div>
-                        @error('description ')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-
-                        <div class="form-group">
-                            <label for="image" class="col-form-label">Նկար</label><br>
-                            <input type="file" class="form-control" id="image" name="image[]" multiple><br><br>
-                        </div>
-                    </div>
-
-
-                    <div class="-footer">
-                        <button type="submit" class="btn btn-primary">Փոփոխել</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="-header">
+        <h1 class="-name" id="exampleModalLabel">Փոփոխել</h1>
     </div>
+    <h1 style="background: red">Բոլոր դաշտերը պարտադիրեն</h1>
+    <ul class="nav nav-tabs" style="margin-bottom: 25px">
+        <li class="active"><a data-toggle="tab" href="#en">EN</a></li>
+        <li><a data-toggle="tab" href="#am">Am</a></li>
+        <li><a data-toggle="tab" href="#ru">RU</a></li>
+    </ul>
+    <form action="{{route('millings.update',$item->id)}}" method="post"
+          enctype="multipart/form-data">
+        @method('PATCH') @csrf
+        <div class="tab-content">
+
+            <div id="en" class="tab-pane fade in active">
+                <div class="form-group">
+                    <label class="required" for="en_name">Անուն: (EN)</label>
+                    <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text" name="en_name" id="en_name" value="{{ old('en_name',$item->en_name) }}" required>
+                    @if($errors->has('en_name'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('en_name') }}
+                        </div>
+                    @endif
+
+                </div>
+                <div class="form-group">
+                    <label for="en_description">Նկարագրություն (EN)</label>
+                    <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}" name="en_description" id="en_description">{{ old('en_description',$item->en_description) }}</textarea>
+                    @if($errors->has('en_description'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('en_description') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div id="am" class="tab-pane fade">
+                <div class="form-group">
+                    <label class="required" for="en_name">Անուն: (AM)</label>
+                    <input class="form-control {{ $errors->has('am_name') ? 'is-invalid' : '' }}" type="text" name="am_name" id="am_name" value="{{ old('am_name',$item->am_name) }}" required>
+                    @if($errors->has('am_name'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('am_name') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="en_description">Նկարագրություն (AM)</label>
+                    <textarea class="form-control {{ $errors->has('am_description') ? 'is-invalid' : '' }}" name="am_description" id="am_description">{{ old('am_description',$item->am_description) }}</textarea>
+                    @if($errors->has('am_description'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('am_description') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div id="ru" class="tab-pane fade">
+                <div class="form-group">
+                    <label class="required" for="en_name">Անուն: (RU)</label>
+                    <input class="form-control {{ $errors->has('ru_name') ? 'is-invalid' : '' }}" type="text" name="ru_name" id="ru_name" value="{{ old('ru_name',$item->ru_name) }}" required>
+                    @if($errors->has('ru_name'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('ru_name') }}
+                        </div>
+                    @endif
+
+                </div>
+                <div class="form-group">
+                    <label for="ru_description">Նկարագրություն (RU)</label>
+                    <textarea class="form-control {{ $errors->has('ru_description') ? 'is-invalid' : '' }}" name="ru_description" id="ru_description">{{ old('ru_description',$item->ru_description) }}</textarea>
+                    @if($errors->has('ru_description'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('ru_description') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="image" class="col-form-label">Նկար</label><br>
+            <input type="file" class="form-control" id="image" name="image[]" multiple><br><br>
+        </div>
+
+        <div class="-footer">
+            <button type="submit" class="btn btn-primary">Փոփոխել</button>
+        </div>
+    </form>
+
+
     <div class="row">
-        @foreach($milling->images as $item)
+        @foreach($item->images as $image)
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a data-toggle="modal" class="deleteImage" style="cursor: pointer;display: inline;"
                    data-target="#delete-modal"
-                   data-url="{{route('millings.destroy', $milling->id) }}"
-                   data-imgId="{{$item->id}}"
+                   data-url="{{route('millings.destroy', $item->id) }}"
+                   data-imgId="{{$image->id}}"
                    data-name="delete_images">
                     <img
                         width="100%" height="200px"
-                        src="{{ asset('storage/'.$item->url)}}"
+                        src="{{ asset('storage/'.$image->url)}}"
                         alt="Preview"
                     />
                 </a>
@@ -87,7 +128,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="delimglabel">Ջնջել նկարը</h5>
+                    <h5 class="modal-name" id="delimglabel">Ջնջել նկարը</h5>
                 </div>
                 <div class="modal-body">Ուզում եք ջնջել նկարը:</div>
                 <div class="modal-footer">
@@ -130,5 +171,3 @@
         });
     </script>
 @endsection
-
-

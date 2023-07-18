@@ -21,7 +21,7 @@ return [
     'our_portfolio' => [
         'our_portfolio' => 'Մեր պորտֆոլիոն',
         'printings' => 'Տպագրություններ',
-        'show_all_printings' => 'Այստեղ ցուցադրված է բոլորը',
+        'show_all' => 'Այստեղ ցուցադրված է բոլորը',
         'all' => 'Բոլորը',
         'printing' => 'Տպագրություն',
         'milling' => 'Ֆրեզերային',

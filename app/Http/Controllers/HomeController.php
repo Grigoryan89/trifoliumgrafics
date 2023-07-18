@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Images;
 use App\Models\Milling;
 use App\Models\Printing;
 use Illuminate\Http\Request;
@@ -36,6 +35,13 @@ class HomeController extends Controller
     public function portfolio()
     {
         return view('portfolio');
+    }
+
+    public function showPortfolio(Printing $printing,Milling $milling)
+    {
+        $model1 = $printing::latest()->get();
+        $model2 = $milling::latest()->get();
+        return view('show-portfolio',compact('model1','model2'));
     }
 
     public function contact()

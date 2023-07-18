@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('millings', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->string('en_name')->nullable();
+            $table->string('en_description')->nullable();
+            $table->string('am_name')->nullable();
+            $table->string('am_description')->nullable();
+            $table->string('ru_name')->nullable();
+            $table->string('ru_description')->nullable();
             $table->timestamps();
         });
     }

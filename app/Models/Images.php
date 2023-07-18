@@ -12,7 +12,7 @@ class Images extends Model
     protected $table = 'images';
 
     protected $fillable = [
-        'url', 'printing_id'
+        'url', 'printing_id','milling_id',
     ];
 
     public function printing()
@@ -25,8 +25,4 @@ class Images extends Model
         return $this->belongsTo(Milling::class, 'id');
     }
 
-    public function printingId($query)
-    {
-        return $query->where('printing_id', 2);
-    }
 }

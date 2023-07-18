@@ -1,26 +1,26 @@
 @extends('layouts.app')
 @section('content')
 
-
+<x-navbar/>
 
     <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="col-lg-12 text-center my-2">
-                <h4>{{__('app.our_portfolio.show_all_printings')}}</h4>
+                <h4>{{__('app.our_portfolio.show_all')}}</h4>
             </div>
         </div>
         <div class="portfolio-menu mt-2 mb-4">
             <ul>
-                <li class="btn btn-outline-dark" data-filter="*"><a href="{{route('print.index')}}">{{__('app.our_portfolio.all')}}</a>
+                <li class="btn btn-outline-dark" data-filter="*"><a href="{{route('show.portfolio')}}">{{__('app.our_portfolio.all')}}</a>
                 </li>
-                <li class="btn btn-outline-dark active" data-filter=".prn"><a href="#">{{__('app.our_portfolio.printing')}}</a>
+                <li class="btn btn-outline-dark " data-filter=".prn"><a href="{{route('print.all')}}">{{__('app.our_portfolio.printing')}}</a>
                 </li>
-                <li class="btn btn-outline-dark" data-filter=".mill"><a href="">{{__('app.our_portfolio.milling')}}</a>
+                <li class="btn btn-outline-dark active" data-filter=".mill"><a href="#">{{__('app.our_portfolio.milling')}}</a>
                 </li>
             </ul>
         </div>
         <div class="portfolio-item row">
-            @foreach($model1 as $item)
+            @foreach($model as $item)
                 <div class="item prn col-lg-3 col-md-4 col-6 col-sm">
                     @if(!$item->images->isEmpty())
                         <img
@@ -36,7 +36,7 @@
                         />
                     @endif
                     <div class="middle">
-                        <a href="{{route('print.show',$item->id)}}">
+                        <a href="{{route('mill.show',$item->id)}}">
                             <div class="text">{{ $item->{app()->getLocale().'_name'} }}</div>
                         </a>
                     </div>

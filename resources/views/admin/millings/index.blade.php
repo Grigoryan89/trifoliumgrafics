@@ -8,15 +8,6 @@
             </p>
         </div>
     @endif
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <div class="table-wrapper">
         <div class="table-title">
@@ -24,7 +15,7 @@
                 <div class="col-sm-8"><h1>Ֆռեզեռովկա <b>Մանրամասներ</b></h1></div>
                 <div class="col-sm-4">
                     <button type="button" class="btn btn-info add-new" data-toggle="modal"
-                            data-target="#addModal"><i class="fa fa-plus"></i> Ավելացնել Ֆռեզեռովկա
+                            data-target="#addModal"><i class="fa fa-plus"></i> Ավելացնել Ֆռեզ
                     </button>
                 </div>
             </div>
@@ -32,23 +23,29 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Անուն</th>
-                <th>Նկարագրություն</th>
+                <th>Անուն (EN)</th>
+                <th>Նկարագ.(EN)</th>
+                <th>Անուն (AM)</th>
+                <th>Նկարագ.(AM)</th>
+                <th>Անուն (RU)</th>
+                <th>Նկարագ.(RU)</th>
                 <th>Նկար</th>
                 <th>Փոփոխել։ Ջնջել</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($millings as $milling)
+            @foreach($millings as $item)
 
                 <tr>
-                    <td>{{$milling->id}}</td>
-                    <td>{{$milling->name}}</td>
-                    <td>{{$milling->description}}</td>
+                    <td>{{$item->en_name}}</td>
+                    <td>{{$item->en_description}}</td>
+                    <td>{{$item->am_name}}</td>
+                    <td>{{$item->am_description}}</td>
+                    <td>{{$item->ru_name}}</td>
+                    <td>{{$item->ru_description}}</td>
                     <td>
-                        @if(!$milling->images->isEmpty())
-                            @foreach($milling->images as $item)
+                        @if(!$item->images->isEmpty())
+                            @foreach($item->images as $item)
                                 <img
                                     width="50px" height="50px"
                                     src="{{$item->url ? asset('storage/'.$item->url): asset('images/no-image.jpg')}}"
@@ -68,15 +65,15 @@
 
 
                             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                                <a href="{{route('millings.edit',$milling->id)}}" class="edit" title="Edit"
+                                <a href="{{route('millings.edit',$item->id)}}" class="edit" title="Edit"
                                    data-toggle="tooltip"><i
                                         class="material-icons"></i></a>
                             </div>
                             <button type="button" data-toggle="modal" class="deleteImage"
                                     style="cursor: pointer;display: inline;color: red"
                                     data-target="#delete-modal"
-                                    data-url="{{route('millings.destroy', $milling->id) }}"
-                                    data-row="{{$milling->id}}"
+                                    data-url="{{route('millings.destroy', $item->id) }}"
+                                    data-row="{{$item->id}}"
                                     data-name="delete_row"><i
                                     class="material-icons"></i></button>
                             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -98,32 +95,84 @@
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <ul class="nav nav-tabs" style="margin-bottom: 25px">
+                    <li class="active"><a data-toggle="tab" href="#en">EN</a></li>
+                    <li><a data-toggle="tab" href="#am">Am</a></li>
+                    <li><a data-toggle="tab" href="#ru">RU</a></li>
+                </ul>
                 <form action="{{route('millings.store')}}" method="post" enctype="multipart/form-data">
                     @method('POST') @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ավելացնել Նոր</h5>
                     </div>
+                    <h1 style="background: red">Բոլոր դաշտերը պարտադիրեն</h1>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name" class="col-form-label">Անուն:</label><br>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                   name="name"><br>
+                        <div class="tab-content">
+
+                            <div id="en" class="tab-pane fade in active">
+                                <div class="form-group">
+                                    <label class="required" for="en_name">Անուն: (EN)</label>
+                                    <input class="form-control {{ $errors->has('en_name') ? 'is-invalid' : '' }}" type="text" name="en_name" id="en_name" value="{{ old('en_name') }}" required autofocus>
+                                    @if($errors->has('en_name'))
+                                        <div class="invalid-feedback" role="alert">
+                                            {{ $errors->first('en_name') }}
+                                        </div>
+                                    @endif
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="en_description">Նկարագրություն (EN)</label>
+                                    <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}" name="en_description" id="en_description" required>{{ old('en_description') }}</textarea>
+                                    @if($errors->has('en_description'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('en_description') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div id="am" class="tab-pane fade">
+                                <div class="form-group">
+                                    <label class="required" for="en_name">Անուն: (AM)</label>
+                                    <input class="form-control {{ $errors->has('am_name') ? 'is-invalid' : '' }}" type="text" name="am_name" id="am_name" value="{{ old('am_name') }}" required>
+                                    @if($errors->has('am_name'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('am_name') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="en_description">Նկարագրություն (AM)</label>
+                                    <textarea class="form-control {{ $errors->has('am_description') ? 'is-invalid' : '' }}" name="am_description" id="am_description">{{ old('am_description') }}</textarea>
+                                    @if($errors->has('am_description'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('am_description') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div id="ru" class="tab-pane fade">
+                                <div class="form-group">
+                                    <label class="required" for="en_name">Անուն: (RU)</label>
+                                    <input class="form-control {{ $errors->has('ru_name') ? 'is-invalid' : '' }}" type="text" name="ru_name" id="ru_name" value="{{ old('ru_name') }}" required>
+                                    @if($errors->has('ru_name'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('ru_name') }}
+                                        </div>
+                                    @endif
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="ru_description">Նկարագրություն (RU)</label>
+                                    <textarea class="form-control {{ $errors->has('ru_description') ? 'is-invalid' : '' }}" name="ru_description" id="ru_description">{{ old('ru_description') }}</textarea>
+                                    @if($errors->has('ru_description'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('ru_description') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
                         </div>
-                        @error('name ')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-                        <div class="form-group">
-                            <label for="description" class="col-form-label">Նկարագրություն</label><br>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror"
-                                   id="description" name="description"><br>
-                        </div>
-                        @error('description ')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
                         <div class="form-group">
                             <label for="image" class="col-form-label">Նկար</label><br>
                             <input type="file" class="form-control" id="image" name="image[]" multiple><br><br>
@@ -172,7 +221,7 @@
                     jQuery.ajax({
                         type: 'POST',
                         url: URL,
-                        data: {delete_row: rowName, id: rowId,'_method': 'delete'},
+                        data: {delete_row: rowName, id: rowId, '_method': 'delete'},
                         success: function (response) {
                             location.reload();
                         },

@@ -60,7 +60,7 @@ class MillingController extends Controller
      */
     public function edit(Milling $milling)
     {
-        return view('admin.millings.edit')->with('milling',$milling);
+        return view('admin.millings.edit')->with('item',$milling);
     }
 
     /**

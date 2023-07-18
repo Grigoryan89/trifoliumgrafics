@@ -1,4 +1,3 @@
-
 <!-- portfolio section -->
 <section class="portfolio_section layout_padding">
     <div class="container">
@@ -14,18 +13,20 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="box b-1">
-                            <a href="{{route('print.index')}}">
-                                <img src="images/printing.jpg" alt=""/>
+                            <a href="{{route('show.portfolio')}}">
+                                <img src="{{asset('images/printing.jpg')}}" alt=""/>
                                 <h4>
                                     {{__('app.our_portfolio.printings')}}
                                 </h4>
                             </a>
                         </div>
                         <div class="box b-2">
-                            <img src="images/p-2.png" alt=""/>
-                            <h4>
-                                Coding
-                            </h4>
+                            <a href="{{route('mill.all')}}">
+                                <img src="{{asset('images/milling.png')}}" alt=""/>
+                                <h4>
+                                    {{__('app.our_portfolio.milling')}}
+                                </h4>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm-6">

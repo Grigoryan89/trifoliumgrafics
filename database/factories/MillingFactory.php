@@ -17,8 +17,12 @@ class MillingFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'description' => fake()->name(),
+            'en_name' => fake()->name(),
+            'en_description' => fake()->name(),
+            'am_name' => fake()->name(),
+            'am_description' => fake()->name(),
+            'ru_name' => fake()->name(),
+            'ru_description' => fake()->name(),
         ];
     }
 

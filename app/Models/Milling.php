@@ -11,8 +11,7 @@ class Milling extends Model
 
     protected $table = 'millings';
 
-    protected $fillable =  ['name','description'];
-
+    protected $fillable = ['en_name','en_description','am_name','am_description','ru_name','ru_description'];
 
     public function images()
     {

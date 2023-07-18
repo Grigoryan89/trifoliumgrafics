@@ -6,13 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidateRequest;
 use App\Models\Images;
 use App\Models\Printing;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use App\Http\Traits\DeleteRowImagesTrait as DeleteImages;
-use Illuminate\Support\Facades\Storage;
-use function PHPUnit\Framework\isJson;
 
 class PrintingController extends Controller
 {
@@ -68,7 +64,7 @@ class PrintingController extends Controller
      */
     public function edit(Printing $printing)
     {
-        return view('admin.printings.edit')->with('printing',$printing);
+        return view('admin.printings.edit')->with('item',$printing);
     }
 
     /**

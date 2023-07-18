@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\Printing\PrintingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Portfolio\PortfolioMillingController;
 use App\Http\Controllers\Portfolio\PortfolioPrintController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -28,14 +29,21 @@ Route::get('lang/change', [HomeController::class, 'change'])->name('changeLang')
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/portfolio', [HomeController::class, 'portfolio']);
+Route::get('/show-portfolio', [HomeController::class, 'showPortfolio'])->name('show.portfolio');
 Route::get('/service', [HomeController::class, 'service']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/partners', [HomeController::class, 'partners']);
 
+// portfolio printing controller
 Route::name('print.')->prefix('portfolio')->group(function() {
-    Route::get('print-index',  [PortfolioPrintController::class, 'index'])->name('index');
-    Route::get('print-all',  [PortfolioPrintController::class, 'printings'])->name('all');
-    Route::get('print-show/{id}',  [PortfolioPrintController::class, 'printingShow'])->name('show');
+    Route::get('print-all',  [PortfolioPrintController::class, 'index'])->name('all');
+    Route::get('print-show/{id}',  [PortfolioPrintController::class, 'show'])->name('show');
+});
+
+// portfolio milling controller
+Route::name('mill.')->prefix('portfolio')->group(function() {
+    Route::get('milling-all',  [PortfolioMillingController::class, 'index'])->name('all');
+    Route::get('milling-show/{id}',  [PortfolioMillingController::class, 'show'])->name('show');
 });
 
 Route::post('contact-us',  [ContactController::class, 'store'])->name('contact.store');
