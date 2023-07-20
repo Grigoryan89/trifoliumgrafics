@@ -17,6 +17,8 @@
                 </li>
                 <li class="btn btn-outline-dark active" data-filter=".mill"><a href="#">{{__('app.our_portfolio.milling')}}</a>
                 </li>
+                <li class="btn btn-outline-dark" ><a href="{{route('las.all')}}">{{__('app.our_portfolio.laser')}}</a>
+                </li>
             </ul>
         </div>
         <div class="portfolio-item row">

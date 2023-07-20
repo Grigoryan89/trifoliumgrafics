@@ -42,7 +42,7 @@
 </head>
 <body>
 
-<div id="app" @if(Request::path() === 'admin/trifoliums') hidden @endif>
+<div id="app" >
     <div class="hero_area" style="height: auto">
         <!-- header section strats -->
         <header class="header_section">
@@ -51,14 +51,6 @@
                     <a class="navbar-brand" href="/">
                         <img src="{{asset('images/logo.jpg')}}" alt=""/>
                     </a>
-                        <span>
-                          Trifolium Grafics
-                        </span>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto mr-2">
@@ -103,7 +95,7 @@
     @if(Session::has('success'))<div class="alert alert-success d-flex justify-content-center">
         <strong>{{session('success')}}</strong>
     </div>
-@endif
+    @endif
 @yield('content')
 
 

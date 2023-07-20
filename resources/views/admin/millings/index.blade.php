@@ -45,10 +45,10 @@
                     <td>{{$item->ru_description}}</td>
                     <td>
                         @if(!$item->images->isEmpty())
-                            @foreach($item->images as $item)
+                            @foreach($item->images as $image)
                                 <img
                                     width="50px" height="50px"
-                                    src="{{$item->url ? asset('storage/'.$item->url): asset('images/no-image.jpg')}}"
+                                    src="{{$image->url ? asset('storage/'.$image->url): asset('images/no-image.jpg')}}"
                                     alt=""
                                 />
                             @endforeach

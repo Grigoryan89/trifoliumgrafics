@@ -24,5 +24,9 @@ class Images extends Model
     {
         return $this->belongsTo(Milling::class, 'id');
     }
+    public function laser()
+    {
+        return $this->belongsTo(Laser::class, 'id');
+    }
 
 }

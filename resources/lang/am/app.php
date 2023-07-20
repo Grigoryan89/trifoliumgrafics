@@ -25,6 +25,7 @@ return [
         'all' => 'Բոլորը',
         'printing' => 'Տպագրություն',
         'milling' => 'Ֆրեզերային',
+        'laser' => 'Լազերաին',
     ],
     'about_contact' => [
         'name' => 'Անուն',

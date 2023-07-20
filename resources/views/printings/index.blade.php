@@ -12,16 +12,22 @@
         </div>
         <div class="portfolio-menu mt-2 mb-4">
             <ul>
-                <li class="btn btn-outline-dark" data-filter="*"><a href="{{route('show.portfolio')}}">{{__('app.our_portfolio.all')}}</a>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('show.portfolio')}}">{{__('app.our_portfolio.all')}}</a>
                 </li>
-                <li class="btn btn-outline-dark active" data-filter=".prn"><a href="#">{{__('app.our_portfolio.printing')}}</a>
+                <li class="btn btn-outline-dark active" >
+                    <a href="#">{{__('app.our_portfolio.printing')}}</a>
                 </li>
-                <li class="btn btn-outline-dark" data-filter=".mill"><a href="{{route('mill.all')}}">{{__('app.our_portfolio.milling')}}</a>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('mill.all')}}">{{__('app.our_portfolio.milling')}}</a>
+                </li>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('las.all')}}">{{__('app.our_portfolio.laser')}}</a>
                 </li>
             </ul>
         </div>
         <div class="portfolio-item row">
-            @foreach($model1 as $item)
+            @foreach($model as $item)
                 <div class="item prn col-lg-3 col-md-4 col-6 col-sm">
                     @if(!$item->images->isEmpty())
                         <img

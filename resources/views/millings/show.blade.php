@@ -11,17 +11,33 @@
         </div>
         <div class="portfolio-menu mt-2 mb-4">
             <ul>
-                <li class="btn btn-outline-dark" data-filter="*"><a
-                        href="{{route('show.portfolio')}}">{{__('app.our_portfolio.all')}}</a>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('show.portfolio')}}">{{__('app.our_portfolio.all')}}</a>
                 </li>
-                <li class="btn btn-outline-dark " data-filter=".prn"><a
-                        href="{{route('print.all')}}">{{__('app.our_portfolio.printing')}}</a>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('print.all')}}">{{__('app.our_portfolio.printing')}}</a>
                 </li>
-                <li class="btn btn-outline-dark" data-filter=".mill"><a href="{{route('mill.all')}}">{{__('app.our_portfolio.milling')}}</a>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('mill.all')}}">{{__('app.our_portfolio.milling')}}</a>
+                </li>
+                <li class="btn btn-outline-dark" >
+                    <a href="{{route('las.all')}}">{{__('app.our_portfolio.laser')}}</a>
                 </li>
             </ul>
         </div>
+        <div class="d-flex justify-content-center">
+            <ul >
+                <li>
+                    <h2 class="title">{{ $model->{app()->getLocale().'_name'} }}</h2>
 
+                </li>
+                <li>
+                    <h3 class="category">{{ $model->{app()->getLocale().'_description'} }}</h3>
+
+                </li>
+            </ul>
+
+        </div>
         <section class="gallery">
             <div class="container">
                 <div class="grid">
@@ -33,14 +49,6 @@
                                  src="{{$item->url ? asset('storage/'.$item->url): asset('images/no-image.jpg')}}"
                                  alt=""
                             />
-                            <figcaption class="img-content">
-                                <h2 class="title">{{ $model->{app()->getLocale().'_name'} }}</h2>
-                                <h3 class="category">{{ $model->{app()->getLocale().'_description'} }}</h3>
-                            </figcaption>
-                            <span class="img-content-hover">
-                                <h2 class="title">{{ $model->{app()->getLocale().'_name'} }}</h2>
-                                <h3 class="category">{{ $model->{app()->getLocale().'_description'} }}</h3>
-                            </span>
                         </figure>
                     </div>
                         @endforeach

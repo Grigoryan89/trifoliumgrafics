@@ -75,17 +75,17 @@ font-size: 16px;">
                         <a class="active-menu" href="/admin/index"><i class="fa fa-dashboard fa-3x"></i>Գլխաոր</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-print fa-3x"></i>Տպագրություն<span
+                        <a href="#"><i class="fa fa-print fa-3x"></i>Tpagrutyunner<span
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('printings.index')}}">Տպագրություն</a>
+                                <a href="{{route('printings.index')}}">Tpagrutyun</a>
                             </li>
                             <li>
-                                <a href="{{route('millings.index')}}">Ֆռեզեռովկա </a>
+                                <a href="{{route('millings.index')}}">Frezerovka </a>
                             </li>
                             <li>
-                                <a href="#">Lazer</a>
+                                <a href="{{route('lasers.index')}}">Lazerayin tpagrutyun</a>
                             </li>
                             <li>
                                 <a href="#">Ploterayin Ktrvacqner</a>
@@ -134,62 +134,11 @@ font-size: 16px;">
 
         </nav>
 
-
-    <!--        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    &lt;!&ndash; Left Side Of Navbar &ndash;&gt;
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    &lt;!&ndash; Right Side Of Navbar &ndash;&gt;
-                    <ul class="navbar-nav ms-auto">
-                        &lt;!&ndash; Authentication Links &ndash;&gt;
-                        @guest
-        @if (Route::has('login'))
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-        @if (Route::has('register'))
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-    @else
-        <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-{{ Auth::user()->name }}
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-            </form>
-        </div>
-    </li>
-@endguest
-        </ul>
-    </div>
-    </div>
-    </nav>-->
         <div id="page-wrapper">
-
+            @if(Session::has('success'))<div class="alert alert-success d-flex justify-content-center">
+                <strong>{{session('success')}}</strong>
+            </div>
+            @endif
                     @yield('content')
 
         </div>

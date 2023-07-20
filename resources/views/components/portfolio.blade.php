@@ -30,11 +30,21 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="box b-3">
-                            <img src="images/p-3.png" alt=""/>
-                            <h4>
-                                Bike Design
-                            </h4>
+                        <div class="box b-1">
+                            <a href="{{route('las.all')}}">
+                                <img src="{{asset('images/laser.png')}}" alt=""/>
+                                <h4>
+                                    {{__('app.our_portfolio.laser')}}
+                                </h4>
+                            </a>
+                        </div>
+                        <div class="box b-2">
+                            <a href="{{route('las.all')}}">
+                                <img src="{{asset('images/laser.png')}}" alt=""/>
+                                <h4>
+                                    {{__('app.our_portfolio.laser')}}
+                                </h4>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,4 @@
 
-@if(Session::has('success'))<div class="alert alert-success d-flex justify-content-center">
-    <strong>{{session('success')}}</strong>
-</div>
-@endif
 <br>
 <section class="contact_section" style="padding-bottom: 15px; padding-top: 15px">
     <div class="container-fluid">
