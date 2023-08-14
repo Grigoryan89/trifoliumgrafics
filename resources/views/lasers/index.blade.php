@@ -20,7 +20,7 @@
                 <li class="btn btn-outline-dark">
                     <a href="{{route('mill.all')}}">{{__('app.our_portfolio.milling')}}</a>
                 </li>
-                <li class="btn btn-outline-dark active">
+                <li class="btn btn-outline-dark ">
                     <a href="#">{{__('app.our_portfolio.laser')}}</a>
                 </li>
             </ul>

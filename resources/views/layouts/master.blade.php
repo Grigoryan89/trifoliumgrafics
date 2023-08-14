@@ -65,7 +65,7 @@ font-size: 16px;">
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+                <ul class="nav  nav-sidebar" data-widget="treeview" id="main-menu">
                     <li class="text-center">
                         <img src="{{asset('admin/img/find_user.png')}}" class="user-image img-responsive"/>
                     </li>
@@ -146,11 +146,14 @@ font-size: 16px;">
 
 </div>
 <script>
-    $('.nav ul li').each(function() {
-        if ($(this).hasClass('active-menu')) {
-            $(this).parents("ul").css('display', 'block');
+    $('.nav-sidebar a').each(function(){
+        let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        let link = this.href;
+        if(link == location){
+            $(this).addClass('active');
+            $(this).closest('.has-treeview').addClass('menu-open');
         }
-    })
+    });
 </script>
 <script src="{{asset('admin/form/form.js')}}"></script>
 <script src="{{asset('admin/js/jquery-1.10.2.js')}}"></script>

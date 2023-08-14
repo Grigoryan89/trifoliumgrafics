@@ -42,7 +42,7 @@
 </head>
 <body>
 
-<div id="app" >
+<div id="app" @if(Request::path() === 'admin/trifoliums') hidden @endif>
     <div class="hero_area" style="height: auto">
         <!-- header section strats -->
         <header class="header_section">
@@ -223,6 +223,14 @@
     let url = "{{ route('changeLang') }}";
     $(".changeLang").change(function () {
         window.location.href = url + "?lang=" + $(this).val();
+    });
+
+    $('.portfolio-menu a').each(function(){
+        let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        let link = this.href;
+        if(link == location){
+            $(this).addClass('active');
+        }
     });
 </script>
 </body>
